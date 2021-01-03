@@ -1,0 +1,39 @@
+.container {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roundAngle {
+    border-radius: 5px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+    h1 {
+        font-size: 3rem;
+        color: #a23232;
+    }
+
+    ul {
+        display: flex;
+        font-size: 1.2rem;
+
+        li+li {
+            margin-left: 50px;
+
+        }
+        a:hover{
+            color: #a23232;
+        }
+    }
+}

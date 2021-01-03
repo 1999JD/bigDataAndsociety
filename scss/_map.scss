@@ -1,0 +1,51 @@
+.map {
+    font-weight: bold;
+    .main {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+    }
+
+    #map {
+        background-color: rgba($color: #a64242, $alpha: .07);
+        width: 700px;
+        height: 900px;
+    }
+
+    .aside {
+        width: 250px;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        .selectArea {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background-color: rgba($color: #a64242, $alpha: .07);
+            padding: 20px;
+            padding-top: 40px;
+
+            select {
+                width: 85%;
+                padding: 8px;
+            }
+        }
+
+        .resultArea {
+            background-color: rgba($color: #a64242, $alpha: .07);
+            padding: 20px;
+            font-size: 1.2rem;
+            height: 100%;
+            padding-top: 40px;
+
+            h3,
+            ul {
+                text-align: center;
+            }
+        }
+
+
+
+    }
+}

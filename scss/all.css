@@ -1,0 +1,360 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+           v2.0 | 20110126
+           License: none (public domain)
+        */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roundAngle {
+  border-radius: 5px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+nav h1 {
+  font-size: 3rem;
+  color: #a23232;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.2rem;
+}
+
+nav ul li + li {
+  margin-left: 50px;
+}
+
+nav ul a:hover {
+  color: #a23232;
+}
+
+.index {
+  position: relative;
+  font-weight: bolder;
+}
+
+.index::before {
+  content: "";
+  background-image: url("../img/首頁底圖.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  width: 100%;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+
+@media (max-width: 980px) {
+  .index::before {
+    height: 400px;
+  }
+}
+
+.index .main {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.index .main h1 {
+  font-size: 3.5rem;
+  color: #a23232;
+  margin-bottom: 103px;
+}
+
+.index .main ul a {
+  font-size: 2.5rem;
+  margin-bottom: 19px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.index .main ul a:hover {
+  color: #a23232;
+}
+
+.standards {
+  font-weight: bold;
+}
+
+.standards li {
+  border-radius: 5px;
+}
+
+.standards .main .card-sequence .span1, .standards .main .card-sequence li::after, .standards .main .card-sequence li:nth-child(n+2) .span2, .standards .main .card-sequence li:nth-child(n+2)::before {
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.standards .main .card-group .span1, .standards .main .card-group li::after, .standards .main .card-group li:nth-child(n+2) .span2, .standards .main .card-group li:nth-child(n+2)::before {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.standards .main {
+  background-color: rgba(166, 66, 66, 0.07);
+  margin-bottom: 120px;
+}
+
+.standards .main .card-sequence {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 40px 0;
+}
+
+.standards .main .card-sequence li {
+  width: 20%;
+  height: 275px;
+  border: 3px solid #a23232;
+  position: relative;
+}
+
+.standards .main .card-sequence .span1 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 30px;
+  border-color: transparent transparent transparent #a23232;
+  right: -33px;
+  z-index: -1;
+}
+
+.standards .main .card-sequence li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 30px;
+  border-color: transparent transparent transparent #fff3f2;
+  right: -30px;
+}
+
+.standards .main .card-sequence li:nth-child(n+2) .span2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 30px;
+  border-color: transparent transparent transparent #a23232;
+  left: -0.5px;
+  z-index: -1;
+}
+
+.standards .main .card-sequence li:nth-child(n+2)::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 30px;
+  border-color: transparent transparent transparent #fff3f2;
+  left: -3.5px;
+}
+
+.standards .main .card-group li {
+  margin-bottom: 40px;
+  border: 6px solid #a23232;
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.standards .main .card-group .span1 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #a23232 transparent transparent transparent;
+  bottom: -56px;
+  z-index: 3;
+}
+
+.standards .main .card-group li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #fff3f2 transparent transparent transparent;
+  z-index: 1;
+  bottom: -50px;
+  z-index: 4;
+}
+
+.standards .main .card-group li:nth-child(n+2) .span2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #a23232 transparent transparent transparent;
+  top: 0px;
+  z-index: 1;
+}
+
+.standards .main .card-group li:nth-child(n+2)::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #fff3f2 transparent transparent transparent;
+  top: -6px;
+  z-index: 2;
+}
+
+.map {
+  font-weight: bold;
+}
+
+.map .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.map #map {
+  background-color: rgba(166, 66, 66, 0.07);
+  width: 700px;
+  height: 900px;
+}
+
+.map .aside {
+  width: 250px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+.map .aside .selectArea {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  background-color: rgba(166, 66, 66, 0.07);
+  padding: 20px;
+  padding-top: 40px;
+}
+
+.map .aside .selectArea select {
+  width: 85%;
+  padding: 8px;
+}
+
+.map .aside .resultArea {
+  background-color: rgba(166, 66, 66, 0.07);
+  padding: 20px;
+  font-size: 1.2rem;
+  height: 100%;
+  padding-top: 40px;
+}
+
+.map .aside .resultArea h3,
+.map .aside .resultArea ul {
+  text-align: center;
+}
+/*# sourceMappingURL=all.css.map */

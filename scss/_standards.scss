@@ -1,0 +1,129 @@
+.standards {
+    font-weight: bold;
+
+    li {
+        border-radius: 5px;
+    }
+
+    @mixin triangle1($color) {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 25px 0 25px 30px;
+        border-color: transparent transparent transparent $color;
+    }
+
+    @mixin triangle2($color) {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 50px 100px 0 100px;
+        border-color: $color transparent transparent transparent;
+    }
+
+    %align-v {
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+    }
+
+    %align-h {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+
+    }
+
+    .main {
+        background-color: rgba($color: #a64242, $alpha: .07);
+        margin-bottom: 120px;
+
+        .card-sequence {
+            display: flex;
+            justify-content: space-evenly;
+            padding:40px 0;
+
+            li {
+                width: 20%;
+                height: 275px;
+                border: 3px solid #a23232;
+                position: relative;
+            }
+
+            .span1 {
+                @include triangle1(#a23232);
+                @extend %align-v;
+                right: -33px;
+                z-index: -1;
+            }
+
+            li::after {
+                content: "";
+                @include triangle1(rgb(255, 243, 242));
+                @extend %align-v;
+                right: -30px;
+            }
+
+            li:nth-child(n+2) .span2 {
+                @include triangle1(#a23232);
+                @extend %align-v;
+                left: -0.5px;
+                z-index: -1;
+            }
+
+
+            li:nth-child(n+2)::before {
+                content: "";
+                @include triangle1(rgb(255, 243, 242));
+                @extend %align-v;
+                left: -3.5px;
+            }
+
+
+        }
+
+        .card-group {
+
+            li {
+                margin-bottom: 40px;
+                border: 6px solid #a23232;
+                position: relative;
+                height: 400px;
+                width: 100%;
+            }
+
+            .span1 {
+                @include triangle2(#a23232);
+                @extend %align-h;
+                bottom: -56px;
+                z-index: 3;
+            }
+
+            li::after {
+                content: "";
+                @include triangle2(rgb(255, 243, 242));
+                @extend %align-h;
+                z-index: 1;
+                bottom: -50px;
+                z-index: 4;
+            }
+
+            li:nth-child(n+2) .span2 {
+                @include triangle2(#a23232);
+                @extend %align-h;
+                top: 0px;
+                z-index: 1;
+            }
+
+            li:nth-child(n+2)::before {
+                content: "";
+                @include triangle2(rgb(255, 243, 242));
+                @extend %align-h;
+                top: -6px;
+                z-index: 2;
+            }
+        }
+    }
+}

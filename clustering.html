@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css" />
+    <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <title>首頁</title>
+    <style>
+        #map {
+            width: 600px;
+            height: 750px;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="" id="selEthno">
+        <option value="阿美族">阿美族</option>
+        <option value="排灣族">排灣族</option>
+    </select>
+    <div id="map">
+
+    </div>
+
+    <script>
+        let selEthno;
+        let schAllUrl = './學校學生資訊.json';
+        let schsAll;
+        let schCoordsUrl = './lat.json';
+        let schsCoords;
+        let test;
+
+        selEthno = document.querySelector('#selEthno');
+        selEthno.addEventListener('change', (e) => {
+            test = e;
+            console.log(e.target.value);
+            addMarker(e.target.value);
+        });
+        fetch(schAllUrl, {
+            method: 'GET'
+        }).then(
+            res => {
+                if (res.ok) return res.json();
+                else throw new Error('schs res is not ok')
+            }
+        ).then(
+            response => {
+                schsAll = response;
+                console.log(schsAll);
+            }
+        );
+        fetch(schCoordsUrl, {
+            method: 'GET'
+        }).then(
+            res => {
+                if (res.ok) return res.json();
+                else throw new Error('latlng res is not ok')
+            }
+        ).then(
+            response => {
+                schsCoords = response;
+                console.log(schsCoords);
+                // addMarker();
+            }
+        )
+
+
+        var map = L.map('map');
+        map.setView(new L.LatLng(23.555, 121.239), 8);
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {
+            minZoom: 4,
+            maxZoom: 14
+        });
+        map.addLayer(osm);
+
+        var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+        var results = L.layerGroup().addTo(map);
+        searchControl.on("results", function (data) {
+            results.clearLayers();
+            for (var i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+            }
+        });
+
+        let greenIcon = L.icon({
+            iconUrl: './schIcon.svg',
+            // shadowUrl: 'leaf-shadow.png',
+            iconSize: [10, 10], // size of the icon
+            shadowSize: [50, 64], // size of the shadow
+            // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62], // the same for the shadow
+            popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var markers = L.markerClusterGroup();
+
+
+        function addMarker(sel) {
+            //sel是族別
+            schsCoords.map(
+                item=>L.marker(new L.LatLng(item.lat, item.lng))
+                .bindPopup(`<p> ${item.school}`)
+            ).forEach(item=> markers.addLayer(item));
+            if(sel == "阿美族"){
+                map.addLayer(markers);
+            }
+            else {
+                markers.clearLayers(markers);
+
+            }
+            // schsAll.map(item => L.marker(new L.LatLng(item.y, item.x)) // 新增Marker
+            //         .bindPopup(`<p>經度: ${item.x}</p><p>緯度: ${item.y}</p>`)) // 資訊視窗
+            //     .forEach(item => markers.addLayer(item)); // 把marker加入 L.markerClusterGroup中
+            //     LMap.addLayer(markers);
+
+
+            // console.log(sel);
+            // schsAll.forEach((element, index) => {
+            //     element[sel]
+            //     if (sel == element.school) {
+            //         L.marker([element.lat, element.lng], {
+            //             icon: greenIcon
+            //         }).addTo(map);
+            //     }
+            // });
+        }
+    </script>
+</body>
+
+</html>

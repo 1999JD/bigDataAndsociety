@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0D3f-S4Vf68qZ9OcIr01UXBEunVVUdW8">
+    </script>
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <script>
+        let newDatum = [];
+        function init() {
+            // var address = '台北市文山區指南路二64號'
+            // 建立 geocoder 物件實例
+            const geocoder = new google.maps.Geocoder();
+            //串接資料 api
+            jsonUrl = '學校學生資訊.json';
+            fetch(jsonUrl, {
+                method: 'GET'
+            }).then(
+                res => {
+                    if (res.ok) return res.json();
+                    else throw new Error('network res is not ok')
+                }
+            ).then(
+                (result) => {
+                    let schools = result;
+                    // 請 Google Maps API 依據地址轉換成經緯度
+                    return schools
+                }
+            ).then(
+                (schools) => {
+                    // convertTool(schools);
+                    console.log('yes');
+                }
+            )
+
+            function convertTool(schools) {
+                let i = 358;
+                let convertTool = setInterval(function () {
+                    geocoder.geocode({
+                        'address': schools[i]["地址"]
+                    }, function (results, status) {
+                        if (status == 'OK') {
+                            newDatum.push({
+                                key:i,
+                                school: schools[i]["校名簡稱"],
+                                lat: results[0].geometry.location.lat(),
+                                lng: results[0].geometry.location.lng(),
+                            });
+                            console.log(newDatum[newDatum.length - 1]);
+                            document.write(newDatum[newDatum.length - 1]);
+                            i++;
+                        } else console.log(status)
+                    });
+                    if (i == schools.length-1) {
+                        clearInterval(convertTool);
+                        document.write(newDatum);
+                    }
+                }, 1000);
+            }
+        };
+    </script>
+</body>
+
+</html>
