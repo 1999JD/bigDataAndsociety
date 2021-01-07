@@ -42,19 +42,8 @@
 
     <script>
         let selEthno;
-        let schAllUrl = './學校學生資訊.json';
-        let schsAll;
-        let schCoordsUrl = './lat.json';
-        let schsCoords;
-        let test;
-
-        selEthno = document.querySelector('#selEthno');
-        selEthno.addEventListener('change', (e) => {
-            test = e;
-            console.log(e.target.value);
-            addMarker(e.target.value);
-        });
-        fetch(schAllUrl, {
+        let school = './merge2.json';
+        fetch(school, {
             method: 'GET'
         }).then(
             res => {
@@ -63,25 +52,17 @@
             }
         ).then(
             response => {
-                schsAll = response;
-                console.log(schsAll);
+                console.log('wow');
+                console.log(response);
             }
         );
-        fetch(schCoordsUrl, {
-            method: 'GET'
-        }).then(
-            res => {
-                if (res.ok) return res.json();
-                else throw new Error('latlng res is not ok')
-            }
-        ).then(
-            response => {
-                schsCoords = response;
-                console.log(schsCoords);
-                // addMarker();
-            }
-        )
 
+        selEthno = document.querySelector('#selEthno');
+        selEthno.addEventListener('change', (e) => {
+            test = e;
+            console.log(e.target.value);
+            addMarker(e.target.value);
+        });
 
         var map = L.map('map');
         map.setView(new L.LatLng(23.555, 121.239), 8);
@@ -103,13 +84,13 @@
 
         var markers = L.layerGroup();
         var myIcon = L.divIcon({className: 'my-div-icon'});
-        function addMarker(sel) {
-            //sel是族別
+        function addMarker(ethno) {
+            //ethno是族別
             schsCoords.map(
                 item=>L.marker(new L.LatLng(item.lat, item.lng),{icon:myIcon})
                 .bindPopup(`<p> ${item.school}`)
             ).forEach(item=> markers.addLayer(item));
-            if(sel == "阿美族"){
+            if(ethno == "阿美族"){
                 map.addLayer(markers);
             }
             else {
