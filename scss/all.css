@@ -357,4 +357,9 @@ nav ul a:hover {
 .map .aside .resultArea ul {
   text-align: center;
 }
+
+.map .aside .resultArea h3 li,
+.map .aside .resultArea ul li {
+  line-height: 1.5;
+}
 /*# sourceMappingURL=all.css.map */

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./scss/all.css">
     <script type="text/javascript" async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0D3f-S4Vf68qZ9OcIr01UXBEunVVUdW8"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0D3f-S4Vf68qZ9OcIr01UXBEunVVUdW8"></script>
     <title>查詢目前缺額__選擇族語</title>
 </head>
 
@@ -27,7 +27,7 @@
         </div>
         <div class="aside">
             <div class="selectArea roundAngle">
-                <h2 class="mb20">下拉選單選擇族語</h2>
+                <h2 class="mb20">查詢學生分布</h2>
                 <select name="" id="selEthno" class="roundAngle mb20">
                     <option value="無">無</option>
                     <option value="阿美族">阿美族</option>
@@ -47,7 +47,7 @@
                     <option value="拉阿魯哇族">拉阿魯哇族</option>
                     <option value="卡那卡那富族">卡那卡那富族</option>
                 </select>
-                <h2 class="mb20">下拉選單選擇縣市</h2>
+                <h2 class="mb20">查詢招募資訊</h2>
                 <select name="" id="selCounty" class="roundAngle mb20">
                     <option value="無">無</option>
                     <option value="新北市">新北市</option>
@@ -69,9 +69,9 @@
                 <h3 class="mb20">
                     各地區招募人數
                 </h3>
-                <ul>
-                    <li class="mb20">新北市:  <span class="recruitNum"></span> 人</li>
-                    <li>台東縣: <span class="recruitNum"></span>人</li>
+                <ul id="recruitmentDetail">
+                    <!-- <li class="mb20">新北市: <span class="recruitNum"></span> 人</li>
+                    <li>台東縣: <span class="recruitNum"></span>人</li> -->
                 </ul>
             </div>
         </div>
@@ -81,8 +81,10 @@
         let schoolUrl = './preprocess/merge.json',
             recruitmentUrl = "./preprocess/缺額.json";
         let school, recruitment;
+        let recruitmentDetail = document.getElementById('recruitmentDetail');
         let mymap, markers = [],
-            infoWindow = [];
+            infoWindow = [],
+            infoContent = [];
 
         function initialize(position) {
             mymap = new google.maps.Map(document.getElementById('mymap'), {
@@ -144,34 +146,42 @@
 
         function addPeopleMarker(ethno) {
             // ethno 是族別
+            infoWindow = [];
+            infoContent=[];
+            recruitmentDetail.innerHTML = "";
             for (let i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
             for (let i = 0; i < school.length; i++) {
-                markers[i] = new google.maps.Marker({
-                    position: {
-                        lat: parseFloat(school[i].lat, 10),
-                        lng: parseFloat(school[i].lng, 10)
-                    },
-                    map: mymap,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: "red",
-                        fillOpacity: normalize(school[i][ethno]),
-                        scale: school[i][ethno] * 0.1,
-                        strokeWeight: .5,
-                        strokeColor: 'white',
-                    },
-                    label: school[i][ethno]
+                if (school[i][ethno] != 0) {
+                    markers.push(new google.maps.Marker({
+                        position: {
+                            lat: parseFloat(school[i].lat, 10),
+                            lng: parseFloat(school[i].lng, 10)
+                        },
+                        map: mymap,
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            fillColor: "red",
+                            fillOpacity: normalize(school[i][ethno]),
+                            scale: school[i][ethno] * 0.1,
+                            strokeWeight: .5,
+                            strokeColor: 'white',
+                        },
+                        label: school[i][ethno]
 
-                })
-
+                    }));
+                    infoContent.push(school[i].school)
+                }
             }
             info();
         }
 
         function addRecruitmentMarker(county) {
             // County 是縣市
+            infoWindow = [];
+            infoContent = [];
+            recruitmentDetail.innerHTML = "";
             console.log('here');
             for (let i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
@@ -189,17 +199,22 @@
                             map: mymap,
                             label: element["招募學校"][i]["校名"]
                         });
+                        infoContent.push(element["招募學校"][i]["語別"]);
+                        recruitmentDetail.innerHTML += `<li class="mb20">
+                        ${element["招募學校"][i]["校名"]}<br>${element["招募學校"][i]["語別"]}<br>${element["招募學校"][i]["備註"]}</li>
+                        `
                     }
                 }
 
             })
+            info();
         }
 
 
         function info() {
-            for (let i = 0; i < school.length; i++) {
+            for (let i = 0; i < markers.length; i++) {
                 infoWindow[i] = new google.maps.InfoWindow({
-                    content: "" + school[i].school
+                    content: "" + infoContent[i]
                 });
                 markers[i].addListener('click', () => {
                     infoWindow[i].open(mymap, markers[i]);
