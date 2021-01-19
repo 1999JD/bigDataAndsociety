@@ -1,16 +1,28 @@
 .standards {
     font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.5;
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
 
     li {
         border-radius: 5px;
     }
+
 
     @mixin triangle1($color) {
         position: absolute;
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 25px 0 25px 30px;
+        border-width: 15px 0 15px 20px;
         border-color: transparent transparent transparent $color;
     }
 
@@ -39,23 +51,26 @@
     .main {
         background-color: rgba($color: #a64242, $alpha: .07);
         margin-bottom: 120px;
+        padding-top: 20px;
 
         .card-sequence {
             display: flex;
             justify-content: space-evenly;
-            padding:40px 0;
+            margin: 40px 0;
 
             li {
-                width: 20%;
+                box-sizing: border-box;
+                width: 250px;
                 height: 275px;
                 border: 3px solid #a23232;
                 position: relative;
+                padding: 10px 25px
             }
 
             .span1 {
                 @include triangle1(#a23232);
                 @extend %align-v;
-                right: -33px;
+                right: -23px;
                 z-index: -1;
             }
 
@@ -63,7 +78,7 @@
                 content: "";
                 @include triangle1(rgb(255, 243, 242));
                 @extend %align-v;
-                right: -30px;
+                right: -20px;
             }
 
             li:nth-child(n+2) .span2 {
@@ -90,8 +105,21 @@
                 margin-bottom: 40px;
                 border: 6px solid #a23232;
                 position: relative;
-                height: 400px;
+                padding: 100px 30px;
                 width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                a {
+                    width: fit-content;
+
+                    &:hover {
+                        color: #a23232;
+
+                    }
+                }
+
             }
 
             .span1 {

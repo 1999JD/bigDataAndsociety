@@ -165,6 +165,17 @@ nav ul a:hover {
 
 .standards {
   font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.standards h2 {
+  font-size: 1.5rem;
+}
+
+.standards h1 {
+  font-size: 2rem;
+  text-align: center;
 }
 
 .standards li {
@@ -186,6 +197,7 @@ nav ul a:hover {
 .standards .main {
   background-color: rgba(166, 66, 66, 0.07);
   margin-bottom: 120px;
+  padding-top: 20px;
 }
 
 .standards .main .card-sequence {
@@ -195,14 +207,17 @@ nav ul a:hover {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 40px 0;
+  margin: 40px 0;
 }
 
 .standards .main .card-sequence li {
-  width: 20%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 250px;
   height: 275px;
   border: 3px solid #a23232;
   position: relative;
+  padding: 10px 25px;
 }
 
 .standards .main .card-sequence .span1 {
@@ -210,9 +225,9 @@ nav ul a:hover {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 25px 0 25px 30px;
+  border-width: 15px 0 15px 20px;
   border-color: transparent transparent transparent #a23232;
-  right: -33px;
+  right: -23px;
   z-index: -1;
 }
 
@@ -222,9 +237,9 @@ nav ul a:hover {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 25px 0 25px 30px;
+  border-width: 15px 0 15px 20px;
   border-color: transparent transparent transparent #fff3f2;
-  right: -30px;
+  right: -20px;
 }
 
 .standards .main .card-sequence li:nth-child(n+2) .span2 {
@@ -232,7 +247,7 @@ nav ul a:hover {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 25px 0 25px 30px;
+  border-width: 15px 0 15px 20px;
   border-color: transparent transparent transparent #a23232;
   left: -0.5px;
   z-index: -1;
@@ -244,7 +259,7 @@ nav ul a:hover {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 25px 0 25px 30px;
+  border-width: 15px 0 15px 20px;
   border-color: transparent transparent transparent #fff3f2;
   left: -3.5px;
 }
@@ -253,8 +268,28 @@ nav ul a:hover {
   margin-bottom: 40px;
   border: 6px solid #a23232;
   position: relative;
-  height: 400px;
+  padding: 100px 30px;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.standards .main .card-group li a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.standards .main .card-group li a:hover {
+  color: #a23232;
 }
 
 .standards .main .card-group .span1 {
