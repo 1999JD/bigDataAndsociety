@@ -362,4 +362,100 @@ nav ul a:hover {
 .map .aside .resultArea ul li {
   line-height: 1.5;
 }
+
+.story {
+  font-size: 1.2rem;
+  color: #a23232;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+.story p {
+  text-align: center;
+}
+
+.story p + p {
+  margin-top: 40px;
+}
+
+.story .main {
+  background-color: rgba(166, 66, 66, 0.07);
+  padding-top: 60px;
+}
+
+.story .graphic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 120px 0;
+}
+
+.story .graphic .text {
+  width: 400px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.story .graphic .traffic {
+  position: relative;
+  top: -100px;
+  right: 80px;
+}
+
+.story .graphic img {
+  max-width: 400px;
+  height: auto;
+  display: block;
+}
+
+.story .graphic img[alt="money"] {
+  max-width: 350px;
+  position: relative;
+  bottom: 90px;
+}
+
+.story .graphic img[alt="road"] {
+  max-width: 550px;
+  position: relative;
+  left: 200px;
+}
+
+.story .graphic img[alt="clock"] {
+  max-width: 300px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  bottom: -40px;
+  right: -40px;
+}
+
+.story .graphic img[alt="elderly"] {
+  max-width: 300px;
+}
+
+.story h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 200px;
+}
+
+.story .footer {
+  text-align: center;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.pl {
+  padding-left: 80px;
+}
+
+.pr {
+  padding-right: 80px;
+}
 /*# sourceMappingURL=all.css.map */
