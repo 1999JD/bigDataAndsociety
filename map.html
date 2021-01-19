@@ -48,6 +48,7 @@
                     <option value="卡那卡那富族">卡那卡那富族</option>
                 </select>
                 <h2 class="mb20">查詢招募資訊</h2>
+                <h3 class="mb20">選擇縣市</h3>
                 <select name="" id="selCounty" class="roundAngle mb20">
                     <option value="無">無</option>
                     <option value="新北市">新北市</option>
@@ -64,23 +65,36 @@
                     <option value="宜蘭縣">宜蘭縣</option>
                     <option value="花蓮縣">花蓮縣</option>
                 </select>
+                <h3 class="mb20">選擇族語</h3>
+                <select name="" id="selLang" class="roundAngle mb20">
+                    <option value="無">無</option>
+                    <option value="阿美語">阿美語</option>
+                    <option value="泰雅語">泰雅語</option>
+                    <option value="排灣語">排灣語</option>
+                    <option value="布農語">布農語</option>
+                    <option value="卑南語">卑南語</option>
+                    <option value="魯凱語">魯凱語</option>
+                    <option value="鄒語">鄒語</option>
+                    <option value="賽夏語">賽夏語</option>
+                    <option value="邵語">邵語</option>
+                    <option value="太魯閣語">太魯閣語</option>
+                </select>
             </div>
             <div class="resultArea roundAngle">
                 <h3 class="mb20">
                     各地區招募人數
                 </h3>
                 <ul id="recruitmentDetail">
-                    <!-- <li class="mb20">新北市: <span class="recruitNum"></span> 人</li>
-                    <li>台東縣: <span class="recruitNum"></span>人</li> -->
                 </ul>
             </div>
         </div>
     </div>
     <script>
-        let selEthno, selCounty;
+        let selEthno, selCounty, selLang;
         let schoolUrl = './preprocess/merge.json',
-            recruitmentUrl = "./preprocess/缺額.json";
-        let school, recruitment;
+            recruitmentUrl = "./preprocess/缺額.json",
+            langUrl = './preprocess/族別缺額.json';
+        let school, recruitment, language;
         let recruitmentDetail = document.getElementById('recruitmentDetail');
         let mymap, markers = [],
             infoWindow = [],
@@ -102,10 +116,21 @@
             else throw new Error('schs res is not ok')
         }).then(
             response => {
-                console.log(response);
                 recruitment = response;
             }
         )
+        fetch(langUrl, {
+            method: 'GET'
+        }).then(
+            res => {
+                if (res.ok) return res.json();
+                else throw new Error('schs res is not ok')
+            }
+        ).then(
+            response => {
+                language = response;
+            }
+        );
 
         fetch(schoolUrl, {
             method: 'GET'
@@ -116,22 +141,26 @@
             }
         ).then(
             response => {
-                console.log(response);
                 school = response;
             }
         );
 
+
         selEthno = document.querySelector('#selEthno');
         selEthno.addEventListener('change', (e) => {
-            console.log(e.target.value);
             addPeopleMarker(e.target.value);
             //族別
         });
 
 
+        selLang = document.querySelector('#selLang');
+        selLang.addEventListener('change', (e) => {
+            addLangMarker(e.target.value);
+            //縣市
+        });
+
         selCounty = document.querySelector('#selCounty');
         selCounty.addEventListener('change', (e) => {
-            console.log(e.target.value);
             addRecruitmentMarker(e.target.value);
             //縣市
         });
@@ -147,7 +176,7 @@
         function addPeopleMarker(ethno) {
             // ethno 是族別
             infoWindow = [];
-            infoContent=[];
+            infoContent = [];
             recruitmentDetail.innerHTML = "";
             for (let i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
@@ -167,6 +196,7 @@
                             scale: school[i][ethno] * 0.1,
                             strokeWeight: .5,
                             strokeColor: 'white',
+
                         },
                         label: school[i][ethno]
 
@@ -182,7 +212,6 @@
             infoWindow = [];
             infoContent = [];
             recruitmentDetail.innerHTML = "";
-            console.log('here');
             for (let i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
@@ -196,8 +225,12 @@
                                 lat: parseFloat(element["招募學校"][i].lat, 10),
                                 lng: parseFloat(element["招募學校"][i].lng, 10)
                             },
+
                             map: mymap,
-                            label: element["招募學校"][i]["校名"]
+                            label: {
+                                text: element["招募學校"][i]["校名"],
+                                color: "DarkSlateBlue"
+                            }
                         });
                         infoContent.push(element["招募學校"][i]["語別"]);
                         recruitmentDetail.innerHTML += `<li class="mb20">
@@ -210,6 +243,36 @@
             info();
         }
 
+        function addLangMarker(lang) {
+            // lang 是語別
+            infoWindow = [];
+            infoContent = [];
+            recruitmentDetail.innerHTML = "";
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+
+            language.forEach(element => {
+                if (element["語別"] == lang) {
+                    for (let i = 0; i < element["招募學校"].length; i++) {
+                        markers[i] = new google.maps.Marker({
+                            position: {
+                                lat: parseFloat(element["招募學校"][i].lat, 10),
+                                lng: parseFloat(element["招募學校"][i].lng, 10)
+                            },
+                            map: mymap,
+                            label: {
+                                text: element["招募學校"][i]["校名"],
+                                color: "DarkSlateBlue"
+                            }
+                        });
+                        infoContent.push(`招募人數 ${element["招募學校"][i]["招募人數"]}`);
+                    }
+                }
+
+            })
+            info();
+        }
 
         function info() {
             for (let i = 0; i < markers.length; i++) {

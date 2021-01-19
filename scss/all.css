@@ -340,6 +340,10 @@ nav ul a:hover {
   padding-top: 40px;
 }
 
+.map .aside .selectArea h3 {
+  font-size: 1.2rem;
+}
+
 .map .aside .selectArea select {
   width: 85%;
   padding: 8px;
