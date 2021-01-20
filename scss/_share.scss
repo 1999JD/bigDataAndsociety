@@ -21,7 +21,11 @@ nav {
 
     h1 {
         font-size: 3rem;
-        color: #a23232;
+
+        a {
+            color: #a23232;
+
+        }
     }
 
     ul {
@@ -32,7 +36,8 @@ nav {
             margin-left: 50px;
 
         }
-        a:hover{
+
+        a:hover {
             color: #a23232;
         }
     }

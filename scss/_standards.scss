@@ -16,6 +16,13 @@
         border-radius: 5px;
     }
 
+    img[alt="老師"] {
+        display: block;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+        transform: translateX(-40px);
+    }
 
     @mixin triangle1($color) {
         position: absolute;
@@ -111,6 +118,11 @@
                 flex-direction: column;
                 justify-content: center;
 
+                .graphic {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
                 a {
                     width: fit-content;
 
@@ -120,6 +132,12 @@
                     }
                 }
 
+
+                img {
+                    max-width: 30%;
+                    height: auto;
+                    display: block;
+                }
             }
 
             .span1 {

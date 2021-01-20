@@ -89,6 +89,9 @@ nav {
 
 nav h1 {
   font-size: 3rem;
+}
+
+nav h1 a {
   color: #a23232;
 }
 
@@ -180,6 +183,15 @@ nav ul a:hover {
 
 .standards li {
   border-radius: 5px;
+}
+
+.standards img[alt="老師"] {
+  display: block;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  -webkit-transform: translateX(-40px);
+          transform: translateX(-40px);
 }
 
 .standards .main .card-sequence .span1, .standards .main .card-sequence li::after, .standards .main .card-sequence li:nth-child(n+2) .span2, .standards .main .card-sequence li:nth-child(n+2)::before {
@@ -282,6 +294,15 @@ nav ul a:hover {
           justify-content: center;
 }
 
+.standards .main .card-group li .graphic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .standards .main .card-group li a {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -290,6 +311,12 @@ nav ul a:hover {
 
 .standards .main .card-group li a:hover {
   color: #a23232;
+}
+
+.standards .main .card-group li img {
+  max-width: 30%;
+  height: auto;
+  display: block;
 }
 
 .standards .main .card-group .span1 {
