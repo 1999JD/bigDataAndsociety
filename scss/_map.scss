@@ -4,6 +4,9 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 60px;
+        @media (max-width:768px) {
+            flex-direction: column-reverse;            
+        }
 
     }
 
@@ -11,6 +14,12 @@
         background-color: rgba($color: #a64242, $alpha: .07);
         width: 700px;
         height: 900px;
+        @media (max-width:768px) {
+            width: 95%;
+            height: 700px;
+            margin: 0 auto;
+            
+        }
     }
 
     .aside {
@@ -18,6 +27,12 @@
         box-sizing: border-box;
         overflow: hidden;
 
+        @media (max-width:768px) {
+            width: auto;
+            display: flex;
+            justify-content: space-around
+            
+        }
         .selectArea {
             text-align: center;
             font-size: 1.5rem;
@@ -25,6 +40,11 @@
             background-color: rgba($color: #a64242, $alpha: .07);
             padding: 20px;
             padding-top: 40px;
+            @media (max-width:768px) {
+                
+                width: 40%;
+            }
+
 
             h3{
                 font-size: 1.2rem;
@@ -41,6 +61,11 @@
             font-size: 1.2rem;
             height: 100%;
             padding-top: 40px;
+            @media (max-width:768px) {
+                width: 40%;
+                height: auto;
+                margin-bottom: 20px;
+            }
 
             h3,
             ul {

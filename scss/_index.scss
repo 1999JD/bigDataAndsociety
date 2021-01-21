@@ -1,6 +1,7 @@
 .index {
     position: relative;
     font-weight: bolder;
+ 
     &::before{
         content: "";
         background-image: url("../img/首頁底圖.png");
@@ -27,6 +28,10 @@
             font-size: 3.5rem;
             color: #a23232;
             margin-bottom: 103px;
+            @media (max-width: 500px) {
+                font-size: 2rem;
+        
+            }
         }
 
         ul {
@@ -36,6 +41,10 @@
                 width: fit-content;
                 &:hover{
                     color:#a23232
+                }
+                @media (max-width: 500px) {
+                    font-size: 1rem;
+            
                 }
             }
         }

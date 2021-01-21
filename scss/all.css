@@ -80,15 +80,36 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-top: 30px;
   margin-bottom: 60px;
 }
 
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 nav h1 {
   font-size: 3rem;
+}
+
+@media (max-width: 480px) {
+  nav h1 {
+    margin-bottom: 20px;
+  }
 }
 
 nav h1 a {
@@ -154,6 +175,12 @@ nav ul a:hover {
   margin-bottom: 103px;
 }
 
+@media (max-width: 500px) {
+  .index .main h1 {
+    font-size: 2rem;
+  }
+}
+
 .index .main ul a {
   font-size: 2.5rem;
   margin-bottom: 19px;
@@ -164,6 +191,12 @@ nav ul a:hover {
 
 .index .main ul a:hover {
   color: #a23232;
+}
+
+@media (max-width: 500px) {
+  .index .main ul a {
+    font-size: 1rem;
+  }
 }
 
 .standards {
@@ -194,6 +227,12 @@ nav ul a:hover {
           transform: translateX(-40px);
 }
 
+@media (max-width: 480px) {
+  .standards img[alt="老師"] {
+    max-width: 300px;
+  }
+}
+
 .standards .main .card-sequence .span1, .standards .main .card-sequence li::after, .standards .main .card-sequence li:nth-child(n+2) .span2, .standards .main .card-sequence li:nth-child(n+2)::before {
   top: 0;
   bottom: 0;
@@ -222,6 +261,18 @@ nav ul a:hover {
   margin: 40px 0;
 }
 
+@media (max-width: 768px) {
+  .standards .main .card-sequence {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 .standards .main .card-sequence li {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -230,6 +281,12 @@ nav ul a:hover {
   border: 6px solid #a23232;
   position: relative;
   padding: 10px 25px;
+}
+
+@media (max-width: 768px) {
+  .standards .main .card-sequence li {
+    margin-bottom: 20px;
+  }
 }
 
 .standards .main .card-sequence .span1 {
@@ -305,6 +362,15 @@ nav ul a:hover {
           align-items: center;
 }
 
+@media (max-width: 768px) {
+  .standards .main .card-group li .graphic {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .standards .main .card-group li a {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -319,6 +385,12 @@ nav ul a:hover {
   max-width: 30%;
   height: auto;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .standards .main .card-group li img {
+    max-width: 60%;
+  }
 }
 
 .standards .main .card-group .span1 {
@@ -382,10 +454,27 @@ nav ul a:hover {
   margin-bottom: 60px;
 }
 
+@media (max-width: 768px) {
+  .map .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
 .map #mymap {
   background-color: rgba(166, 66, 66, 0.07);
   width: 700px;
   height: 900px;
+}
+
+@media (max-width: 768px) {
+  .map #mymap {
+    width: 95%;
+    height: 700px;
+    margin: 0 auto;
+  }
 }
 
 .map .aside {
@@ -395,6 +484,17 @@ nav ul a:hover {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .map .aside {
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
 .map .aside .selectArea {
   text-align: center;
   font-size: 1.5rem;
@@ -402,6 +502,12 @@ nav ul a:hover {
   background-color: rgba(166, 66, 66, 0.07);
   padding: 20px;
   padding-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .map .aside .selectArea {
+    width: 40%;
+  }
 }
 
 .map .aside .selectArea h3 {
@@ -419,6 +525,14 @@ nav ul a:hover {
   font-size: 1.2rem;
   height: 100%;
   padding-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .map .aside .resultArea {
+    width: 40%;
+    height: auto;
+    margin-bottom: 20px;
+  }
 }
 
 .map .aside .resultArea h3,
@@ -473,6 +587,20 @@ nav ul a:hover {
           animation-iteration-count: infinite;
 }
 
+@media (max-width: 768px) {
+  .story .scooter {
+    -webkit-animation-name: 'riding2';
+            animation-name: 'riding2';
+  }
+}
+
+@media (max-width: 480px) {
+  .story .scooter {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 @-webkit-keyframes riding {
   0% {
     bottom: 0;
@@ -513,6 +641,46 @@ nav ul a:hover {
   }
 }
 
+@-webkit-keyframes riding2 {
+  0% {
+    bottom: 0;
+    right: 0px;
+  }
+  25% {
+    right: 100px;
+  }
+  50% {
+    bottom: 80px;
+  }
+  75% {
+    right: 240px;
+  }
+  100% {
+    right: 240px;
+    bottom: 180px;
+  }
+}
+
+@keyframes riding2 {
+  0% {
+    bottom: 0;
+    right: 0px;
+  }
+  25% {
+    right: 100px;
+  }
+  50% {
+    bottom: 80px;
+  }
+  75% {
+    right: 240px;
+  }
+  100% {
+    right: 240px;
+    bottom: 180px;
+  }
+}
+
 .story .graphic {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -524,6 +692,15 @@ nav ul a:hover {
       -ms-flex-pack: center;
           justify-content: center;
   margin: 120px 0;
+}
+
+@media (max-width: 768px) {
+  .story .graphic {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .story .graphic .text {
@@ -538,10 +715,23 @@ nav ul a:hover {
   right: 80px;
 }
 
+@media (max-width: 768px) {
+  .story .graphic .traffic {
+    position: static;
+    margin-top: 10px;
+  }
+}
+
 .story .graphic img {
   max-width: 400px;
   height: auto;
   display: block;
+}
+
+@media (max-width: 480px) {
+  .story .graphic img[alt="language"] {
+    max-width: 300px;
+  }
 }
 
 .story .graphic img[alt="money"] {
@@ -550,10 +740,30 @@ nav ul a:hover {
   bottom: 90px;
 }
 
+@media (max-width: 480px) {
+  .story .graphic img[alt="money"] {
+    max-width: 300px;
+    position: static;
+  }
+}
+
 .story .graphic img[alt="road"] {
   max-width: 550px;
   position: relative;
   left: 200px;
+}
+
+@media (max-width: 768px) {
+  .story .graphic img[alt="road"] {
+    position: static;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .story .graphic img[alt="road"] {
+    max-width: 300px;
+  }
 }
 
 .story .graphic img[alt="clock"] {
@@ -563,6 +773,12 @@ nav ul a:hover {
           box-sizing: border-box;
   bottom: -40px;
   right: -40px;
+}
+
+@media (max-width: 768px) {
+  .story .graphic img[alt="clock"] {
+    position: static;
+  }
 }
 
 .story .graphic img[alt="elderly"] {
@@ -582,11 +798,34 @@ nav ul a:hover {
   font-size: 1rem;
 }
 
-.pl {
+.story .pl {
   padding-left: 80px;
 }
 
-.pr {
+@media (max-width: 768px) {
+  .story .pl {
+    padding-left: 0;
+  }
+}
+
+.story .pr {
   padding-right: 80px;
+}
+
+@media (max-width: 768px) {
+  .story .pr {
+    padding-right: 0;
+  }
+}
+
+.story .pr40 {
+  padding-right: 40px;
+}
+
+@media (max-width: 768px) {
+  .story .pr40 {
+    padding-right: 0;
+    margin-top: 20px;
+  }
 }
 /*# sourceMappingURL=all.css.map */
